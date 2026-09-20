@@ -10,6 +10,26 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
+// Fullscreen Button
+const fullscreenButton = document.createElement('button');
+
+fullscreenButton.textContent = 'Fullscreen';
+
+fullscreenButton.style.cssText =
+  'position:fixed; top:16px; right:16px; padding:8px 14px;' +
+  'font:14px system-ui, sans-serif; border:0; border-radius:6px;' +
+  'cursor:pointer; background:#f3f0ea; color:#2b2f36;';
+
+document.body.appendChild(fullscreenButton);
+
+fullscreenButton.addEventListener('click', function () {
+  if (!document.fullscreenElement) {
+    renderer.domElement.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+});
+
 // Box
 const boxGeometry = new THREE.BoxGeometry(9, 9, 5, 15);
 const boxMaterial = new THREE.MeshBasicMaterial({ color: 0xFABBF1 });

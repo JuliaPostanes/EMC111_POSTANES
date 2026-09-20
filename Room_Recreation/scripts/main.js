@@ -69,6 +69,26 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 document.body.appendChild(renderer.domElement);
 
+
+const fullscreenButton = document.createElement('button');
+
+fullscreenButton.textContent = 'Fullscreen';
+
+fullscreenButton.style.cssText =
+  'position:fixed; top:16px; right:16px; padding:8px 14px;' +
+  'font:14px system-ui, sans-serif; border:0; border-radius:6px;' +
+  'cursor:pointer; background:#f3f0ea; color:#2b2f36;';
+
+document.body.appendChild(fullscreenButton);
+
+fullscreenButton.addEventListener('click', function () {
+  if (!document.fullscreenElement) {
+    renderer.domElement.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+});
+
 if ('useLegacyLights' in renderer) {
   renderer.useLegacyLights = false;
 } else {
